@@ -4,7 +4,7 @@ const API = {
     try {
       res = await fetch("/api/workouts");
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
     const json = await res.json();
 
@@ -36,6 +36,7 @@ const API = {
   },
 
   async getWorkoutsInRange() {
+    // eslint-disable-next-line quotes
     const res = await fetch(`/api/workouts/range`);
     const json = await res.json();
 
