@@ -3,7 +3,13 @@ const Workout = require("../models/index.js");
 const app = express();
 
 app.get("/api/workouts", (req, res) => {
-
+  Workout.find({})
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
 });
 
 app.put("/api/workouts", (req, res) => {
