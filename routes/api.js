@@ -1,8 +1,8 @@
 const express = require("express");
-const Workout = require("../models/index.js");
+const Workout = require("../models/workout.js");
 const app = express();
 
-app.get("/api/workouts", (req, res) => {
+app.get("/workouts", (req, res) => {
   Workout.find({})
     .then(dbWorkout => {
       res.json(dbWorkout);
