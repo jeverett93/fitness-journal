@@ -12,12 +12,18 @@ app.get("/workouts", (req, res) => {
     });
 });
 
-app.put("/api/workouts", (req, res) => {
+app.put("/workouts/:id", (req, res) => {
 
 });
 
-app.post("/api/workouts", (req, res) => {
-
+app.post("/workouts", (req, res) => {
+  Workout.create(req.body)
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
 });
 
 app.get("/api/workouts/range", (req, res) => {
