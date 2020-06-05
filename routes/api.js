@@ -1,9 +1,10 @@
 const express = require("express");
-const Workout = require("../models/workout.js");
+const db = require("../models");
 const app = express();
+const mongoose = require("mongoose");
 
 app.get("/workouts", (req, res) => {
-  Workout.find({})
+  db.Workout.find({})
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
@@ -13,65 +14,21 @@ app.get("/workouts", (req, res) => {
 });
 
 app.put("/workouts/:id", (req, res) => {
-//   Workout.update(
-//     {
-//       _id: mongojs.ObjectId(req.params.id)
-//     },
-//     {
-//       $set: {
-//         title: req.body.title,
-//         note: req.body.note,
-//         modified: Date.now()
-//       }
-//     },
-//     (error, data) => {
-//       if (error) {
-//         res.send(error);
-//       } else {
-//         res.send(data);
-//       }
-//     }
-//   );
-  Workout.findByIdAndUpdate(req.params.id, 
-    {exercises: [
-      {
-        type: req.body.type,
-        name: req.body.name,
-        duration: req.body.duration,
-        weight: req.body.weight,
-        reps: req.body.reps,
-        sets: req.body.sets,
-        distance: req.body.distance
-      }
-    ]}, 
-    {new: true}, (err, data) => {
-      if (err) {
-        res.send(err);
-      }
-      else {
-        res.send(data);
+  const id = mongoose.Types.ObjectId(req.params.id);
+  db.Workout.findOneAndUpdate(
+    { _id: id }, 
+    { $push: { exercises: req.body  } },
+    function (error, data) {
+      if (error) {
+        res.json(error);
+      } else {
+        res.json(data);
       }
     });
 });
 
 app.post("/workouts", (req, res) => {
-  let newWorkout = {
-    day: req.body.day,
-    exercises: [
-      {
-        type: req.body.type,
-        name: req.body.name,
-        duration: req.body.duration,
-        weight: req.body.weight,
-        reps: req.body.reps,
-        sets: req.body.sets,
-        distance: req.body.distance
-      }
-    ]
-    
-  };
-
-  Workout.create(newWorkout)
+  db.Workout.create({})
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
@@ -80,8 +37,14 @@ app.post("/workouts", (req, res) => {
     });
 });
 
-app.get("/api/workouts/range", (req, res) => {
-
+app.get("/workouts/range", (req, res) => {
+  db.Workout.find({})
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
 });
 
 module.exports = app;
