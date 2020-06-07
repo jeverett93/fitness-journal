@@ -1,8 +1,10 @@
+// requiring dependencies
 const express = require("express");
 const db = require("../models");
 const app = express();
 const mongoose = require("mongoose");
 
+// GET route to pull up previous workout
 app.get("/workouts", (req, res) => {
   db.Workout.find({})
     .then(dbWorkout => {
@@ -13,6 +15,7 @@ app.get("/workouts", (req, res) => {
     });
 });
 
+// PUT route to update previous workout with new exercises
 app.put("/workouts/:id", (req, res) => {
   const id = mongoose.Types.ObjectId(req.params.id);
   db.Workout.findOneAndUpdate(
@@ -27,6 +30,7 @@ app.put("/workouts/:id", (req, res) => {
     });
 });
 
+// POST route to add new workout
 app.post("/workouts", (req, res) => {
   db.Workout.create({})
     .then(dbWorkout => {
@@ -37,6 +41,7 @@ app.post("/workouts", (req, res) => {
     });
 });
 
+// GET route to pull stats of previous workouts
 app.get("/workouts/range", (req, res) => {
   db.Workout.find({})
     .then(dbWorkout => {
@@ -47,4 +52,5 @@ app.get("/workouts/range", (req, res) => {
     });
 });
 
+// Exporting API routes to be used in other parts of the application
 module.exports = app;
