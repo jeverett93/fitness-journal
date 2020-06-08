@@ -1,6 +1,8 @@
+// requiring dependency and importing model files
 let mongoose = require("mongoose");
 let db = require("../models");
 
+// syncing database with mongoose
 mongoose.connect("mongodb://localhost/workout", {
   useNewUrlParser: true,
   useFindAndModify: false

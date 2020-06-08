@@ -2,6 +2,7 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const compression = require("compression");
 const app = express();
 require("dotenv").config();
 
@@ -11,6 +12,8 @@ const PORT = process.env.PORT || 3000;
 // Importing HTML and API routes
 const apiRoutes = require("./routes/api");
 const htmlRoutes = require("./routes/html");
+
+app.use(compression());
 
 // middleware for morgan/collecting request logs
 app.use(logger("dev"));
