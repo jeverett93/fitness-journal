@@ -8,6 +8,7 @@ mongoose.connect("mongodb://localhost/workout", {
   useFindAndModify: false
 });
 
+// array for workout seeds. user can run these to seed database when testing.
 let workoutSeed = [
   {
     day: new Date().setDate(new Date().getDate()-10),
@@ -137,6 +138,7 @@ let workoutSeed = [
   }
 ];
 
+// deletes seed documents and inserts new documents, logging how many records were inserted
 db.Workout.deleteMany({})
   .then(() => db.Workout.collection.insertMany(workoutSeed))
   .then(data => {

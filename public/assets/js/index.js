@@ -1,3 +1,4 @@
+// Function to bring up summary of last workout on page load
 init();
 
 async function init() {

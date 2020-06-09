@@ -29,8 +29,12 @@ This is a fitness app that allows a user to track their workouts. They can add e
     ```
     npm install
     ```
+* Step 4. Run the database seeds from the command line with following command:
 
-* Step 4. Run the application from the command line with following command:
+    ```
+    npm run seed
+    ```
+* Step 5. Run the application from the command line with following command:
 
     ```
     node server.js

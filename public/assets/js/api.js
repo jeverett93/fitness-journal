@@ -1,4 +1,5 @@
 const API = {
+  // function to get last workout on page load
   async getLastWorkout() {
     let res;
     try {
@@ -10,6 +11,8 @@ const API = {
 
     return json[json.length - 1];
   },
+
+  // function to update workout with new exercise
   async addExercise(data) {
     const id = location.search.split("=")[1];
 
@@ -23,6 +26,8 @@ const API = {
 
     return json;
   },
+
+  // function to add new workout with new exercises
   async createWorkout(data = {}) {
     const res = await fetch("/api/workouts", {
       method: "POST",
@@ -35,9 +40,9 @@ const API = {
     return json;
   },
 
+  // function to show statistical breakdown of previous workouts
   async getWorkoutsInRange() {
-    // eslint-disable-next-line quotes
-    const res = await fetch(`/api/workouts/range`);
+    const res = await fetch("/api/workouts/range");
     const json = await res.json();
 
     return json;

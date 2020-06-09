@@ -1,3 +1,4 @@
+// pulling class and id elements from exercise html file
 const workoutTypeSelect = document.querySelector("#type");
 const cardioForm = document.querySelector(".cardio-form");
 const resistanceForm = document.querySelector(".resistance-form");
@@ -17,6 +18,7 @@ const newWorkout = document.querySelector(".new-workout");
 let workoutType = null;
 let shouldNavigateAway = false;
 
+// function to pull up options for creating a new exercise
 async function initExercise() {
   let workout;
 
@@ -49,6 +51,7 @@ function handleWorkoutTypeChange(event) {
   validateInputs();
 }
 
+// validates if exercise input is resistance or cardio
 function validateInputs() {
   let isValid = true;
 
@@ -95,6 +98,7 @@ function validateInputs() {
   }
 }
 
+// function that adds exercise input from form data to workout data 
 async function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -126,6 +130,7 @@ function handleToastAnimationEnd() {
   }
 }
 
+// function to clear inputs
 function clearInputs() {
   cardioNameInput.value = "";
   nameInput.value = "";
@@ -137,6 +142,7 @@ function clearInputs() {
   weightInput.value = "";
 }
 
+// conditionals adding event listeners to complete, add, and workout type buttons
 if (workoutTypeSelect) {
   workoutTypeSelect.addEventListener("change", handleWorkoutTypeChange);
 }
@@ -151,6 +157,7 @@ if (addButton) {
 }
 toast.addEventListener("animationend", handleToastAnimationEnd);
 
+// event listener on all inputs in the exercise html file
 document
   .querySelectorAll("input")
   .forEach(element => element.addEventListener("input", validateInputs));
