@@ -4,7 +4,6 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const compression = require("compression");
 const app = express();
-require("dotenv").config();
 
 // specifying which port the app should use
 const PORT = process.env.PORT || 3000;
