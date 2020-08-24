@@ -11,9 +11,36 @@ const WorkoutSchema = new Schema({
     default: new Date().setDate(new Date().getDate()),
     required: true
   },
-  exercises: {
-    type: Array
-  }
+  exercises: [
+    {
+      type: {
+        type: String,
+        trim: true,
+        required: "Enter an exercise type"
+      },
+      name: {
+        type: String,
+        trim: true,
+        required: "Enter an exercise name"
+      },
+      duration: {
+        type: Number,
+        required: "Enter an exercise duration in minutes"
+      },
+      distance: {
+        type: Number
+      },
+      weight: {
+        type: Number
+      },
+      reps: {
+        type: Number
+      },
+      sets: {
+        type: Number
+      }
+    }
+  ]
 });
 
 // Setting up document as a model to be used throughout application
